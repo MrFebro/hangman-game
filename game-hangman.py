@@ -1,7 +1,8 @@
+
 from random import choice
 print('')
 print('=-' * 30)
-print('{:-^60}'.format('JOGO DA FORCA'))
+print('{:-^60}'.format('HANGMAN BY LUIS FEBRO'))
 print('=-' * 30)
 
 def body_hang(c):
@@ -48,11 +49,11 @@ def body_hang(c):
 # DATA BASE - QUESTIONS AND HIDDEN ANSWERS (DO NOT CHEAT HERE (;  )
 ################################################################
 # 5 questions (1º Tip, 2º Answer)
-database = ['Um estado Brasileiro', 'Amazonas', 
-'Uma cor', 'Amarelo',
-'Um filme', 'Batman', 
-'Um livro', 'Segredo', 
-'Uma Profissão', 'Programador']
+database = ['A brazilian City', 'Rio de Janeiro', 
+'Uma cor', 'Yellow',
+'A movie', 'Batman', 
+'A book', 'Harry Potter', 
+'An occupation', 'Programmer']
 #choosing data
 tips = choice(list(database[n] for n in range(0, len(database), 2))) #here we create only the tips data
 answers = database[database.index(tips) + 1].upper()
@@ -66,23 +67,23 @@ print(f'\nDICA: {tips}')
 for l in range(0, len(hidden_ans)):
   discovered_letters.append(' -- ')
 cont = contover = amount = 0
-print(f'A palavra tem {len(hidden_ans)} letras. Vamos começar!')
+print(f'The word has {len(hidden_ans)} letras. Let's get started!')
 body_hang(contover)
 print(' -- ' * len(hidden_ans), end = '')
 while True:
-  user_letter = str(input('\nDigite UMA LETRA: ')).strip().upper()
+  user_letter = str(input('\nType a letter: ')).strip().upper()
   if user_letter == '':
-    print('Parece que você não digitou uma letra, hein meu.')
+    print("It seems like you didn't inserted a letter, pal")
     continue
   if user_letter[0] in '123456789':
-    print('Vish...Número não pode não...')
+    print('Common!!! Numbers are not allowed...just letters')
     continue
   if len(user_letter) > 1:
-    print(f'Você quis dizer {user_letter[0]}, né? \nVou considerar a primeira letra! (=')
+    print(f'Do you mean {user_letter[0]}, is it not? \nLet's consider the first letter! (=')
     user_letter = user_letter[0]
   #user got one letter
   if user_letter in discovered_letters:
-    print('Você já colocou essa letra. Tente Novamente!')
+    print('YOu already put this letter. Try again!')
     continue
   if user_letter in hidden_ans:
     body_hang(contover)
@@ -103,31 +104,31 @@ while True:
       body_hang(contover)
       print('\nGAME OVER!')
       break
-    print('\nNão tem essa letra! Tente de Novo!')
+    print('\nNope! ain't got this letter...Try again!')
   # renewed for a new counting
   # cont = 0
   # results 
-  print('\nVocê acertou {} letras até agora! '.format(cont))
-  print(f'RESTAM: {6 - contover} Tentativas...')
+  print('\nYou guessed {} letters so far! '.format(cont))
+  print(f'LEFT: {6 - contover} TRIES...')
     
 
   #Option to reveal word already with 4 traces left:
   if discovered_letters.count(' -- ') <= 4:
     final_word = ''.join(hidden_ans)
     final_word_user = ' ' 
-    while final_word_user not in 'SN':
-      final_word_user = str(input('Já sabe qual é a Palavra escondida [S/N]?  ')).strip().upper()
-    if final_word_user == 'S':
-      final_word_user = str(input('Pode escrever aqui: ')).strip().upper()
+    while final_word_user not in 'YN':
+      final_word_user = str(input('Do you already know the hidden word [Y/N]?  ')).strip().upper()
+    if final_word_user == 'Y':
+      final_word_user = str(input('You can write over here: ')).strip().upper()
     if final_word == final_word_user:
-      print('PARABÉNS! VOCÊ ACERTOU!')
+      print('CONGRATS! YOU GOT IT!')
       break
-      print('Parece que não...tente de novo...')
+      print('It seems not the right one...try again...')
 
   if ' -- ' not in discovered_letters:
-    print('PARABÉNS! VOCÊ ACERTOU!')
+    print('CONGRATS! YOU GOT IT!')
     break
-print('FIM DO JOGO')
+print('GAME IS OVER')
 
 # NOTES:
 # l means letters. this is requires in both for iteration
