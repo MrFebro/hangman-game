@@ -1,9 +1,13 @@
 
+#By: Luis Febro
+#Goal: Hangman game with a robot character. You have to find the right answer for each question before your robot end up being hung tragically.
+#Date: 05/20/19
+#Issues: if you guys know how to fix this box that appears at the beginning before it supossed to pop up, just let me know in the comments. If you are resolute of some other enhancements, I will be your ears. (=
 from random import choice
 print('')
-print('=-' * 30)
-print('{:-^60}'.format('HANGMAN BY LUIS FEBRO'))
-print('=-' * 30)
+print('=-' * 20)
+print('{:-^30}'.format('HANGMAN GAME BY LUIS FEBRO'))
+print('=-' * 20)
 
 def body_hang(c):
   body1 = body2 = body3 = body4 = body5 = body6 = ' '
@@ -48,9 +52,9 @@ def body_hang(c):
 ################################################################
 # DATA BASE - QUESTIONS AND HIDDEN ANSWERS (DO NOT CHEAT HERE (;  )
 ################################################################
-# 5 questions (1º Tip, 2º Answer)
+# 5 questions (1st Hint keys followed by their respective Answers)
 database = ['A brazilian City', 'Rio de Janeiro', 
-'Uma cor', 'Yellow',
+'A color', 'Yellow',
 'A movie', 'Batman', 
 'A book', 'Harry Potter', 
 'An occupation', 'Programmer']
@@ -62,12 +66,12 @@ answers = database[database.index(tips) + 1].upper()
 hidden_ans = list(answers)
 discovered_letters = []
 
-print(f'\nDICA: {tips}')
+print(f'\nKEY HINT: {tips}')
 
 for l in range(0, len(hidden_ans)):
   discovered_letters.append(' -- ')
 cont = contover = amount = 0
-print(f'The word has {len(hidden_ans)} letras. Let's get started!')
+print(f'The word has {len(hidden_ans)} letters. Lets get started!')
 body_hang(contover)
 print(' -- ' * len(hidden_ans), end = '')
 while True:
@@ -79,11 +83,11 @@ while True:
     print('Common!!! Numbers are not allowed...just letters')
     continue
   if len(user_letter) > 1:
-    print(f'Do you mean {user_letter[0]}, is it not? \nLet's consider the first letter! (=')
+    print(f'Do you mean {user_letter[0]}, is it not? \nLets consider the first letter! (=')
     user_letter = user_letter[0]
   #user got one letter
   if user_letter in discovered_letters:
-    print('YOu already put this letter. Try again!')
+    print('You already put this letter. Try again!')
     continue
   if user_letter in hidden_ans:
     body_hang(contover)
@@ -104,7 +108,7 @@ while True:
       body_hang(contover)
       print('\nGAME OVER!')
       break
-    print('\nNope! ain't got this letter...Try again!')
+    print('\nNope! ain\'t got this letter...Try again!')
   # renewed for a new counting
   # cont = 0
   # results 
